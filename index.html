@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <div class="header">
+                <h1>
+                    <span>🧮</span>
+                    STI Grades Calculator
+                </h1>
+                <p class="subtitle">Calculate your academic performance with ease</p>
+            </div>
+
+            <div class="cards-container">
+                <div class="card" onclick="showPage('gwaPage')">
+                    <div class="icon-circle blue-circle">📊</div>
+                    <h2>GWA Calculator</h2>
+                    <p>Calculate your General Weighted Average by adding subjects with their units and grades</p>
+                </div>
+
+                <div class="card" onclick="showPage('cumulativePage')">
+                    <div class="icon-circle green-circle">📈</div>
+                    <h2>Cumulative GWA</h2>
+                    <p>Calculate your cumulative GWA using previous and current semester grades</p>
+                </div>
+
+                <div class="card" onclick="showPage('subjectPage')">
+                    <div class="icon-circle purple-circle">🎓</div>
+                    <h2>Subject Grades</h2>
+                    <p>Calculate final grade from prelims, midterm, pre-finals, and finals</p>
+                </div>
+            </div>
+
+            <p class="footer-text">Choose a calculator above to get started</p>
+        </div>
+
+        <!-- GWA Calculator Page -->
+        <div id="gwaPage" class="page">
+            <a href="#" class="back-link" onclick="showPage('homePage'); return false;">
+                ← Back to Home
+            </a>
+
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <span>📊</span>
+                    <h2>GWA Calculator</h2>
+                </div>
+                <p class="calculator-desc">Add your subjects with their units and grades to calculate your GWA</p>
+
+                <div id="subjectsList"></div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Subject Name</label>
+                        <input type="text" id="subjectName" placeholder="e.g., Mathematics">
+                    </div>
+                    <div>
+                        <label>Units</label>
+                        <input type="number" id="units"  min="0" step="0.5">
+                    </div>
+                    <div>
+                        <label>Grade</label>
+                        <input type="number" id="grade" min="1" max="5" step="0.25">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-blue" onclick="addSubject()">
+                        + Add Subject
+                    </button>
+                    <button class="btn btn-green" onclick="calculateGWA()">
+                        📊 Calculate GWA
+                    </button>
+                    <button class="btn btn-red" onclick="clearGWA()">
+                        🗑️ Clear All
+                    </button>
+                </div>
+
+                <div id="gwaResult" class="result-section">
+                    <div class="result-label">Your GWA is</div>
+                    <div class="result-value" id="gwaValue">0.00</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cumulative GWA Calculator Page -->
+        <div id="cumulativePage" class="page">
+            <a href="#" class="back-link" onclick="showPage('homePage'); return false;">
+                ← Back to Home
+            </a>
+
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <span>📈</span>
+                    <h2>Cumulative GWA Calculator</h2>
+                </div>
+                <p class="calculator-desc">Calculate your cumulative GWA across semesters</p>
+
+                <div class="form-group">
+                    <label>Previous Cumulative GWA</label>
+                    <input type="number" id="prevGWA"  min="1" max="5" step="0.01">
+                    <div class="helper-text">Your GWA from previous semesters</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Current Semester GWA</label>
+                    <input type="number" id="currentGWA" min="1" max="5" step="0.01">
+                    <div class="helper-text">Your GWA for this semester</div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-green" onclick="calculateCumulative()">
+                        📊 Calculate Cumulative GWA
+                    </button>
+                    <button class="btn btn-red" onclick="clearCumulative()">
+                        🗑️ Clear
+                    </button>
+                </div>
+
+                <div id="cumulativeResult" class="result-section">
+                    <div class="result-label">Your Cumulative GWA is</div>
+                    <div class="result-value" id="cumulativeValue">0.00</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Subject Grades Calculator Page -->
+        <div id="subjectPage" class="page">
+            <a href="#" class="back-link" onclick="showPage('homePage'); return false;">
+                ← Back to Home
+            </a>
+
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <span>🎓</span>
+                    <h2>Subject Grades Calculator</h2>
+                </div>
+                <p class="calculator-desc">Calculate your final grade from term grades</p>
+
+                <div class="form-group">
+                    <label>Prelims Grade</label>
+                    <input type="number" id="prelims"  min="0" max="100">
+                    <div class="helper-text">First term grade (0-100)</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Midterm Grade</label>
+                    <input type="number" id="midterm"  min="0" max="100">
+                    <div class="helper-text">Second term grade (0-100)</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Pre-Finals Grade</label>
+                    <input type="number" id="prefinals"  min="0" max="100">
+                    <div class="helper-text">Third term grade (0-100)</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Finals Grade</label>
+                    <input type="number" id="finals" min="0" max="100">
+                    <div class="helper-text">Final term grade (0-100)</div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-purple" onclick="calculateFinalGrade()">
+                        🎓 Calculate Final Grade
+                    </button>
+                    <button class="btn btn-red" onclick="clearSubject()">
+                        🗑️ Clear
+                    </button>
+                </div>
+
+                <div id="subjectResult" class="result-section">
+                    <div class="result-label">Your Final Grade is</div>
+                    <div class="result-value" id="finalGradeValue">0.00</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
