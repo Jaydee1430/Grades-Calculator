@@ -160,7 +160,7 @@ function calculateFinalGrade() {
     else if(finalGrade <= 100 ){
         equivalent = 1.00
     }
-    document.getElementById('finalGradeValue').textContent = finalGrade.toFixed(2) + "/" + equivalent.toFixed(2);
+    document.getElementById('finalGradeValue').textContent = finalGrade.toFixed(2) + "(" + equivalent.toFixed(2) + ")";
     document.getElementById('subjectResult').classList.add('show');
 }
 
