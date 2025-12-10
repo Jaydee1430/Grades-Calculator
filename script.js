@@ -1,7 +1,7 @@
-// Global variables
+
 let subjects = [];
 
-// Navigation function
+
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
@@ -9,7 +9,6 @@ function showPage(pageId) {
     document.getElementById(pageId).classList.add('active');
 }
 
-// GWA Calculator Functions
 function addSubject() {
     const name = document.getElementById('subjectName').value.trim();
     const units = parseFloat(document.getElementById('units').value);
@@ -83,7 +82,6 @@ function clearGWA() {
     document.getElementById('gwaResult').classList.remove('show');
 }
 
-// Cumulative GWA Calculator Functions
 function calculateCumulative() {
     const prev = parseFloat(document.getElementById('prevGWA').value);
     const current = parseFloat(document.getElementById('currentGWA').value);
@@ -109,7 +107,6 @@ function clearCumulative() {
     document.getElementById('cumulativeResult').classList.remove('show');
 }
 
-// Subject Grades Calculator Functions
 function calculateFinalGrade() {
     const prelims = parseFloat(document.getElementById('prelims').value);
     const midterm = parseFloat(document.getElementById('midterm').value);
@@ -172,9 +169,7 @@ function clearSubject() {
     document.getElementById('subjectResult').classList.remove('show');
 }
 
-// Add event listeners for Enter key
 document.addEventListener('DOMContentLoaded', function() {
-    // GWA Calculator - Add subject on Enter
     const gwaInputs = ['subjectName', 'units', 'grade'];
     gwaInputs.forEach(id => {
         const input = document.getElementById(id);
@@ -187,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Cumulative GWA - Calculate on Enter
     const cumulativeInputs = ['prevGWA', 'currentGWA'];
     cumulativeInputs.forEach(id => {
         const input = document.getElementById(id);
@@ -200,7 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Subject Grades - Calculate on Enter
     const subjectInputs = ['prelims', 'midterm', 'prefinals', 'finals'];
     subjectInputs.forEach(id => {
         const input = document.getElementById(id);
