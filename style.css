@@ -24,7 +24,6 @@ body {
     display: block;
 }
 
-/* Home Page Styles */
 .header {
     text-align: center;
     margin-bottom: 60px;
@@ -115,7 +114,6 @@ body {
     opacity: 0.9;
 }
 
-/* Calculator Pages Common Styles */
 .back-link {
     display: inline-flex;
     align-items: center;
